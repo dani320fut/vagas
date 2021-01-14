@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      - default
+    volumes:
+      - ./app:/app
+    ports:
+      - 80:80
+    container_name: salestime_api
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: salestime123
+      MYSQL_DATABASE: salestime
+      MYSQL_USER: salestime
+      MYSQL_PASSWORD: admin123
+    ports:
+      - "9906:3306"
+    container_name: salestime_mysql
+
